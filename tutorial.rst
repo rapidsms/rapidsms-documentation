@@ -111,7 +111,7 @@ Now that our database has been synchronized, we can fireup the test webserver::
 
 Now try opening the following url in your web browser: `http://localhost:8000/`
 
-.. image:: rapidsms-tut.png
+.. image:: rapidsms-start.png
 
 Congratulations you have successfully installed RapidSMS and gotten it to run.
 
