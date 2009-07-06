@@ -24,11 +24,12 @@ Here are certain things we will be keeping track of:
     2) The mileage readings
     3) The driver (we would need some way to identify the driver)
 
-Getting RapidSMS
-----------------
+Installing RapidSMS
+-------------------
 
-The best way to get RapidSMS is to clone it from its repository. In order to 
-do this, you'll need to have Git installed on your machine. Please visit 
+The best way to install RapidSMS is to clone it from its repository (this way 
+you are sure to be installing the bleeding edge version of the software).
+In order to do this, you'll need to have Git installed on your machine. Please visit 
 http://git-scm.com/ for more information on getting Git installed.
 
 Assuming you've installed ``git``, the following steps will get RapidSMS 
@@ -38,6 +39,81 @@ setup on your machine::
     ~$ cd rapidsms
     ~rapidsms$
 
+Configuring RapidSMS
+--------------------
+
+RapidSMS configuration options are stored in the ``rapidsms.ini`` file in the 
+root directory of the application. You can modify the settings here using your 
+favorite text editor. If you'll be doing development work however, we 
+recommend copying the file to a new file called ``local.ini``.
+
+During the initialization of RapidSMS, the application will look in the 
+directory for any file named ``local.ini`` for configuration settings. If this 
+is not found, then ``rapidsms.ini`` will be loaded instead.
+
+In the configuration file, there are several configuration options and sections 
+for now, we'll not treat them.
+
+
+Firing up RapidSMS
+------------------
+
+Before starting RapidSMS, we need to first of all synchronize the database. 
+This step allows all necessary database tables which are persistent stores 
+for the Django database models that RapidSMS uses.::
+
+    ~rapidsms$ python rapidsms syncdb
+    Creating table auth_permission
+    Creating table auth_group
+    Creating table auth_user
+    Creating table auth_message
+    Creating table django_content_type
+    Creating table django_session
+    Creating table django_site
+    Creating table django_admin_log
+    Creating table httptester_message
+    Creating table locations_locationtype
+    Creating table locations_location
+    Creating table patterns_pattern
+    Creating table reporters_role
+    Creating table reporters_reportergroup
+    Creating table reporters_reporter
+    Creating table reporters_persistantbackend
+    Creating table reporters_persistantconnection
+    Creating table logger_incomingmessage
+    Creating table logger_outgoingmessage
+
+    You just installed Django's auth system, which means you don't have any superusers defined.
+    Would you like to create one now? (yes/no):
+
+Your output may vary depending on the type of applications that are installed 
+and/or enabled. You can answer ``yes`` to the question to create a ``superuser``
+and fill out whatever you want to use as username, email address and password.::
+
+    Would you like to create one now? (yes/no): yes
+    Username (Leave blank to use 'username'):
+    E-mail address: username@domain.com
+    Password:
+    Password (again):
+    Superuser created successfully.
+    Installing index for auth.Permission model
+    Installing index for auth.Message model
+    Installing index for admin.LogEntry model
+    Installing index for locations.Location model
+    Installing index for reporters.ReporterGroup model
+    Installing index for reporters.Reporter model
+    Installing index for reporters.PersistantConnection model
+    ~rapidsms$
+
+Now that our database has been synchronized, we can fireup the test webserver::
+
+    ~rapidsms$ python rapidsms runserver 8000
+
+Now try opening the following url in your web browser: `http://localhost:8000/`
+
+.. image:: rapidsms-tut.png
+
+Congratulations you have successfully installed RapidSMS and gotten it to run.
 
 Creating the application stub
 -----------------------------
