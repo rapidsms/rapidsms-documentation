@@ -183,7 +183,7 @@ copy and paste the following code listing in it.::
         start_time = models.DateTimeField(null=True)
         stop_mileage = models.PositiveIntegerField(null=False, default=0)
         stop_time = models.DateTimeField(null=True)
-        reporter = models.CharField(null=False, max_lenth=20)
+        reporter = models.CharField(null=False, max_length=20)
         completed = models.BooleanField(default=False)
 
 Syncing the database
