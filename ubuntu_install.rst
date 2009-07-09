@@ -128,8 +128,7 @@ The source code for RapidSMS_ is stored at GitHub_. You use the 'git' command to
 
 Choosing the correct Fork
 +++++++++++++++++++++++++
-The most confusing part of downloading RapidSMS is decide *which version* to download! 
-With all the development happening right now there are more than **10** versions of RapidSMS. In GitHub_ terminology, each version is called a *fork*
+The most confusing part of downloading RapidSMS is decide *which version* to download! With all the development happening right now there are more than **10** versions of RapidSMS. In GitHub_ terminology, each version is called a *fork*
 
 .. _RapidSMS Forks: http://github.com/unicefinnovation/rapidsms/network/members
 __ `RapidSMS Forks`_
