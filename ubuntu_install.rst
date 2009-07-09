@@ -87,16 +87,13 @@ OR
    in production.
        
 The following packages are OPTIONAL but useful to have, though you can leave them out if you want to create a minimal system and avoid downloading any more packages than you absolutely need:
-
-* **picocom**: a program for talking to modems over serial ports. 
-    *Very* useful for debugging modem/handset connection problems.
-* **sqlite3**: a command line program for accessing sqlite3 databases. 
-    If you use Sqlite3 as the datastore for RapidSMS, 
-    you will want this for debugging.
+* **picocom**: a program for talking to modems over serial ports. *Very* useful for debugging modem/handset connection problems.
+* **sqlite3**: a command line program for accessing sqlite3 databases. If you use Sqlite3 as the datastore for RapidSMS, you will want this for debugging.
 * **sqlite3-doc**: documentation for sqlite3 tool.
 * **emacs22-nox**: the Emacs text editor. 
-    .. NOTE:: 
-    This is *big*. If you are happy with Vi or Nano (installed by default), skip this.
+
+.. NOTE:: 
+This is *big*. If you are happy with Vi or Nano (installed by default), skip this.
 
 This apt command will install *all* the packages listed above::
 
