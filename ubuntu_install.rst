@@ -5,12 +5,13 @@
 .. _Get Ubuntu: http://www.ubuntu.com/getubuntu 
 .. _Ubuntu: http://www.ubuntu.com
 .. _GitHub: http://github.com
+.. _RapidSMS email group: http://groups.google.com/group/rapidsms
 
 Installing RapidSMS on Ubuntu 9.10 Jaunty
 ==========================================
 
-1 Intro
--------
+Intro
+-----
 
 These instructions explain how to install RapidSMS_ with a PyGSM_ backend for communicating with GSM handsets and modems.
 
@@ -43,7 +44,7 @@ There are many options in how to install the software so a few comments on why t
        E.g.: For example, if you use the 'ewheeler' fork, 
        put RapidSMS_ in /usr/local/ewheeler-rapidsms. 
 
-2 Install Ubuntu Jaunty
+1 Install Ubuntu Jaunty
 -----------------------
 Install *either* Jaunty Desktop or Jaunty Server. 
 
@@ -53,7 +54,7 @@ The advantage of Server is that you *don't* get a full desktop, which can discou
 
 If you don't know how to get and install Ubuntu_, visit the `Get Ubuntu`_ website for instructions on downloading or ordering a CD.
 
-3 Update Jaunty
+2 Update Jaunty
 ---------------
 The install images and CDs for Ubuntu are always a little out of date. Before installing, it's a good idea to update the system. This requires an Internet connection and can take some time if there are a lot of changes::
 
@@ -61,7 +62,7 @@ The install images and CDs for Ubuntu are always a little out of date. Before in
     > sudo apt-get upgrade
 
 
-4 Install required and useful packages
+3 Install required and useful packages
 --------------------------------------
 The following packages are required to complete the install:
 
@@ -94,14 +95,35 @@ The following packages are OPTIONAL but useful to have, though you can leave the
 * **emacs22-nox**: the Emacs text editor. 
 
 .. NOTE:: 
-    This is *big*. If you are happy with Vi or Nano (installed by default), skip this.
+    EMACS is *big*. If you are happy with Vi or Nano (installed by default), skip this.
 
 This apt command will install *all* the packages listed above::
 
     > sudo apt-get install git-core python-pysqlite2 mysql-server python-mysqldb python-django picocom sqlite3 sqlite3-doc emacs22-nox
+    
 
-6 Retrieve RapidSMS from GitHub_
---------------------------------
+4 Retrieve PyGSM from GitHub_ and Install
+--------------------------------------------
+The source code for PyGSM_ is stored at GitHub_. You use the 'git' command to retrieve it.
+
+Cloning PyGSM code from GitHub_
++++++++++++++++++++++++++++++
+Once you have selected your fork, you can do the following to *clone* it (copy it) to your local machine::
+
+    > cd /usr/local
+    > sudo git clone git://github.com/rapidsms/pygsm.git pygsm
+    
+Compile and install PyGSM
+++++++++++++++++++++++++++++
+
+::
+
+    > cd /usr/local/pygsm
+    > sudo python setup.py install
+    
+
+5 Retrieve RapidSMS from GitHub_ and Install
+--------------------------------------------
 The source code for RapidSMS_ is stored at GitHub_. You use the 'git' command to retrieve it.
 
 Choosing the correct Fork
@@ -113,72 +135,106 @@ With all the development happening right now there are more than **10** versions
 __ `RapidSMS Forks`_
 You can view all the `RapidSMS Forks here`__
 
-The ''main'' fork is '''unicefinnovation / rapidsms''', but this fork is often not the newest.
+The **main** fork is ``rapidsms / rapidsms``. Unless you *know* you need something else, this is the one you should use.
 
-Currently I am using the '''ewheeler / rapidsms''' fork.
+.. IMPORTANT:: If you don't know which fork to use, please ask for help on the `RapidSMS email group`_
 
-'''IMPORTANT''': If you don't know which fork to use, please ask for help on the [http://groups.google.com/group/rapidsms  RapidSMS email group]
+Cloning the code from GitHub_
++++++++++++++++++++++++++++++
+Once you have selected your fork, you can do the following to *clone* it (copy it) to your local machine::
 
-Once you have picked your fork, you can download the software with a command in the form:
-{{{
-> sudo git clone git://github.com/<fork name>/rapidsms.git <local folder name>
-}}}
+    > cd /usr/local
+    > sudo git clone git://github.com/<fork name>/rapidsms.git <local folder name>
 
-Where you ''replace'' <fork name> with your fork and <local folder name> with a name for the folder that the content will go into. To download the ewheeler fork, I do the following:
-{{{
-> cd /usr/local
-> sudo git clone git://github.com/ewheeler/rapidsms.git ewheeler-rapidsms
-}}}
+Make sure to replace <fork name> with your fork and <local folder name> with a name for the folder that the content will go into. To download the main fork, I do the following::
 
-== 6. Compile and install RapidSMS ==
+    > cd /usr/local
+    > sudo git clone git://github.com/rapidsms/rapidsms.git rapidsms
 
-'''NOTE''': If you named your rapidsms directory differently than I did (maybe you used a different fork) you need to change my example command below to 'cd' into the folder that holds the RapidSMS code that you retrieved in step 6 above.
- 
-{{{
-> cd /usr/local/ewheeler-rapidsms
-> sudo python setup.py install
-}}}
+Compile and install RapidSMS
+++++++++++++++++++++++++++++
 
-== 7. Test your install ==
+.. NOTE:: 
+    If you named your rapidsms directory differently than I did (maybe you used a different fork) you need to change my example command below to 'cd' into the folder that holds the RapidSMS code that you retrieved in step 6 above.
 
-=== Test Spomsky ===
-Try running Spomsky with the following command:
-{{{
-> sudo spomskyd
-}}}
+::
 
-If it is working, you should see output like:
-{{{
-init Started HTTP Offline Backend
-     URI: http://localhost:1270/
-init Started SPOMSKYd Application
-     URI: http://localhost:8100/
-}}}
+    > cd /usr/local/rapidsms
+    > sudo python setup.py install
+    
 
-=== Test RapidSMS ===
-The following commands create a test project (remember to replace ewheeler-rapidsms with the folder that has your RapidSMS source code in it from step 5 above):
+6 Test your install
+-------------------
 
-{{{
-> mdkir ~/rapidsms-projects
-> cd ~/rapidsms-projects
-> rapidsms startproject test-project
-> cd ~/rapidsms-projects/test-project
-> cp -a /usr/local/ewheeler-rapidsms/apps/* apps/
-> chmod a+x ./manage.py
-> ./manage.py syncdb
-> ./manage.py route &
-> ./manage.py runserver &
-}}}
+Test PyGSM
+++++++++++
 
-Now open a browser and connect to:
-{{{
-http://localhost:8000
-}}}
+PyGSM includes a small demo program that will connect to a modem and respond to incoming SMSs.
+
+The program is called `pygsm_demo` and it takes as arguments:
+* The device the modem is connected to. E.g. `/dev/ttyUSB0` or `/dev/ttyACM0`
+* Modem configuration settings
+
+The following will run the demo connecting to a MultiTech modem on `/dev/ttyUSB0`::
+
+    > pygsm_demo /dev/ttyUSB0 baudrate=115200 rtscts=1
+
+While running, the demo will show all the commands it is sending the modem. Output will look something like::
+
+    pyGSM Demo App
+      Port: /dev/ttyUSB0
+      Config: {'baudrate': '115200', 'rtscts': '1'}
+
+    Connecting to GSM Modem...
+       debug Booting
+       debug Connecting
+       write 'ATE0\r'
+        read '\r\n'
+        read 'OK\r\n'
+       write 'AT+CMEE=1\r'
+        read '\r\n'
+        read 'OK\r\n'
+       write 'AT+WIND=0\r'
+        read '\r\n'
+        read 'OK\r\n'
+       write 'AT+CSMS=1\r'
+        read '\r\n'
+        read '+CSMS: 1,1,1\r\n'
+        read '\r\n'
+        read 'OK\r\n'
+       write 'AT+CMGF=0\r'
+        read '\r\n'
+        read 'OK\r\n'
+       write 'AT+CNMI=2,2,0,0,0\r'
+        read '\r\n'
+        read 'OK\r\n'
+       write 'AT+CMGL=0\r'
+        read '\r\n'
+        read 'OK\r\n'
+    Waiting for incoming messages...
+       write 'AT\r'
+        read '\r\n'
+        read 'OK\r\n'
+       write 'AT+CMGL=0\r'
+        read '\r\n'
+        read 'OK\r\n'
+
+Test RapidSMS
++++++++++++++
+The following commands create a test project (remember to replace `rapidsms` with the folder that has your RapidSMS source code in it from step 5 above)::
+
+    > mdkir ~/rapidsms-projects
+    > cd ~/rapidsms-projects
+    > rapidsms startproject test-project
+    > cd ~/rapidsms-projects/test-project
+    > cp -a /usr/local/rapidsms/apps/* apps/
+    > cp rapidsms.ini.example rapidsms.ini
+    > chmod a+x ./manage.py
+    > ./manage.py syncdb
+    > ./manage.py route &
+    > ./manage.py runserver &
+
+
+Now open a browser and connect to `http://localhost:8000 <http://localhost:8000>`_
 
 You should see a RapidSMS dashboard.
-
-'''NOTE''': If you do ''not'' have 'manage.py' in your test-project folder after running 'rapidsms startproject test-project', this means your rapidsms fork has a ''bug'' in it!. To fix this bug run the following commands, then erase your 'test-project' directory, and recreate it with the commands above. Remember to change 'ewheeler-rapidsms' to whatever folder has your RapidSMS source in it from step 5.
-
-{{{
-> sudo cp /usr/local/ewheeler-rapidsms/lib/rapidsms/skeleton/project/manage.py /usr/local/lib/python2.6/dist-packages/rapidsms/skeleton/project/
-}}}
