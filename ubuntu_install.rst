@@ -1,10 +1,11 @@
-.. _pygsm: http://github.com/rapidsms/pygsm/tree/master
+.. _PyGSM: http://github.com/rapidsms/pygsm/tree/master
 .. _synaptic: https://help.ubuntu.com/community/SynapticHowto
 .. _apt: http://www.debian.org/doc/manuals/apt-howto/ch-apt-get.en.html
 .. _RapidSMS: http://www.rapidsms.org
 .. _Get Ubuntu: http://www.ubuntu.com/getubuntu 
 .. _Ubuntu: http://www.ubuntu.com
 .. _GitHub: http://github.com
+.. _RapidSMS Forks: http://github.com/unicefinnovation/rapidsms/network/members
 
 Installing RapidSMS on Ubuntu 9.10 Jaunty
 ==========================================
@@ -12,7 +13,7 @@ Installing RapidSMS on Ubuntu 9.10 Jaunty
 1 Intro
 -------
 
-These instructions explain how to install RapidSMS_ with a pygsm_ backend for communicating with GSM handsets and modems.
+These instructions explain how to install RapidSMS_ with a PyGSM_ backend for communicating with GSM handsets and modems.
 
 There are many options in how to install the software so a few comments on why to do it as described below:
 
@@ -22,7 +23,7 @@ There are many options in how to install the software so a few comments on why t
       commands. In setting up a RapidSMS server using *standard* Ubuntu 
       packages makes set-up and maintenance easier. 
 
-	.. Note:: I
+	.. NOTE:: I
 	   The command-line is really useful for managing remote servers, 
 	   so this documentation will use apt_ . 
 	   
@@ -36,7 +37,7 @@ There are many options in how to install the software so a few comments on why t
     If you are installing to develop the platform itself, 
     ``~/home/dev`` is probably a better spot. 
 
-    .. Note::
+    .. NOTE::
        If you choose to install any of the non-mainline forks,
        it's a good idea to name your install with the fork name
        so that you can easily remember where it came from.
@@ -64,65 +65,51 @@ The install images and CDs for Ubuntu are always a little out of date. Before in
 4 Install required and useful packages
 --------------------------------------
 The following packages are required to complete the install:
- * **git-core**: the 'git' command line for retrieving code from GitHub_
+* **git-core**: the 'git' command line for retrieving code from GitHub_
+* **python-django**: the Django application server (the basis of RapidSMS_)
+* **python-serial**: Python serial libraries needed to run PyGSM_
+* **python-tz**: Python timezone libraries
 
+You will also need at least one of the following database systems:
+* **mysql-server**: The MySQL server
+* **python-mysqldb**: Python library access to MySQL
 
- * '''build-essential''': all the basic tools needed for compiling C and C++ programs. Useful on a development system.
+OR
 
-The following packages are Python support libraries needed by RapidSMS:
- * '''python-pysqlite2''': Support for Sqlite3 in Python (I know, the numbering is confusing, but pysqlit2 _is_ for Sqlite3) 
- * '''python-mysqldb''': Support from MySQL in Python
- * '''python-django''': The Django web application framework
-
-The following packages are for libraries (support software) needed by RapidSMS and Spomsky:
- * '''ruby-full''': the Ruby language, needed by Spomsky. This package will download the interpreter (ruby), the interactive interpreter (irb), ruby doc system (rdoc and ri), and some important support libraries. [http://packages.ubuntu.com/jaunty/ruby-full Details Here]
- * '''ruby1.8-dev''': development support tools for Ruby
-
+* **python-pysqlite2**: Support for Sqlite3 in Python 
+    (I know, the numbering is confusing, but pysqlite2 *is* for Sqlite3) 
+    .. NOTE::
+       Currently SQLite should be used for development and
+       testing only. The multi-process nature of RapidSMS_
+       does not interact stably enough with SQLite for use
+       in production.
+       
 The following packages are OPTIONAL but useful to have, though you can leave them out if you want to create a minimal system and avoid downloading any more packages than you absolutely need:
- * '''picocom''': a program for talking to modems over serial ports. ''Very'' useful for debugging modem/handset connection problems.
- * '''sqlite3''': a command line program for accessing sqlite3 databases. If you use Sqlite3 as the datastore for RapidSMS, you will want this for debugging.
- * '''sqlite3-doc''': documentation for sqlite3 tool.
- * '''emacs22-nox''': the Emacs text editor. '''Note''': this is big. If you are happy with Vi or Nano (installed by default), skip this.
+* **picocom**: a program for talking to modems over serial ports. 
+    *Very* useful for debugging modem/handset connection problems.
+* **sqlite3**: a command line program for accessing sqlite3 databases. 
+    If you use Sqlite3 as the datastore for RapidSMS, 
+    you will want this for debugging.
+* **sqlite3-doc**: documentation for sqlite3 tool.
+* **emacs22-nox**: the Emacs text editor. 
+    .. NOTE:: 
+    This is *big*. If you are happy with Vi or Nano (installed by default), skip this.
 
-This apt command will install _all_ the packages listed above:
-{{{
-> sudo apt-get install git-core ruby-full ruby1.8-dev rubygems python-pysqlite2 python-mysqldb python-django picocom sqlite3 sqlite3-doc emacs22-nox build-essential
-}}}
+This apt command will install *all* the packages listed above::
 
-'''NOTE''': Installing these packages will require about 200mb of downloads. You need a _good_ Internet connection and some time. 
+    > sudo apt-get install git-core python-pysqlite2 mysql-server python-mysqldb python-django picocom sqlite3 sqlite3-doc emacs22-nox
 
-== 4. Install Spomskyd ==
+6 Retrieve RapidSMS from GitHub_
+--------------------------------
+The source code for RapidSMS_ is stored at GitHub_. You use the 'git' command to retrieve it.
 
-Spomskyd is Ruby code, and Ruby has it's own package manager called 'gem'. 
+Choosing the correct Fork
++++++++++++++++++++++++++
+The most confusing part of downloading RapidSMS is decide *which version* to download! 
+With all the development happening right now there are more than **10** versions of RapidSMS. In GitHub_ terminology, each version is called a *fork*
 
-=== Setup Gem with !GitHub as a 'source' ===
-This command tells gem to look for Ruby packages from !GitHub
-
-{{{
->sudo gem sources --add http://gems.github.com
-}}}
-
-=== Install Spomsky and supporting packages ===
-{{{
-> sudo gem install adammck-spomskyd
-}}}
-
-'''NOTE''': This will pull down several libraries required to run Spomskyd and takes a while.
-
-=== Make links for easy access to Ruby binaries, like Spomskyd ===
-'''NOTE''': Adam !McKaig suggests doing this by modifying your PATH variable. Unfortunately, default behavior on Ubuntu is for 'sudo' to override modified PATH variables, so running 'sudo spomskyd' will not find the binary. This is clumsy workaround, but ''less'' clumsy than the hacks to fix sudo...
-
-{{{
-> sudo ln -s /var/lib/gems/1.8/bin/* /usr/local/bin/
-}}}
-
-== 5. Retrieve RapidSMS from !GitHub ==
-The source code for RapidSMS is stored at [http://github.com GitHub]. You use the 'git' command to retrieve it.
-
-=== Retrieving RapidSMS ===
-The most confusing part of downloading RapidSMS is decide ''which version'' to download! With all the development happening right now there are more than '''10''' versions of RapidSMS. In !GitHub terminology, each version is called a 'fork'
-
-You can view all the [http://github.com/unicefinnovation/rapidsms/network/members RapidSMS Forks here]
+You can view all the `RapidSMS Forks here`__
+__ `RapidSMS Forks`_
 
 The ''main'' fork is '''unicefinnovation / rapidsms''', but this fork is often not the newest.
 
