@@ -105,7 +105,7 @@ and fill out whatever you want to use as username, email address and password.::
     Installing index for reporters.PersistantConnection model
     ~rapidsms$
 
-Now that our database has been synchronized, we can fireup the test webserver::
+Now that our database has been synchronized, we can fireup the internal webserver::
 
     ~rapidsms$ python rapidsms runserver 8000
 
@@ -216,7 +216,10 @@ the code listing below. This should go into the ``app.py`` file in the
     from models import *
 
     class App (rapidsms.app.App):
-
+        
+        # message pattern expected: 'mileage start number' or 'mileage stop number'
+        # in order to take care of possible typos it will accept a mispelled milage
+        # for the keyword: 'milage start number' or 'milage stop number'
         pattern = re.compile(r'^mile?age\s+(start|stop)\s+(\d+)', re.IGNORECASE)
 
         def start (self):
@@ -303,7 +306,117 @@ the code listing below. This should go into the ``app.py`` file in the
             """Perform global app cleanup when the application is stopped."""
             pass
 
+In the code listing above, we create our app by creating a class named ``App`` that 
+inherits from ``rapidsms.app.App``. This is the convention. Thankfully, the startapp 
+command creates this so all you need to do is fill in your code. As you would have 
+noticed, we are only writing code to override the ``handle`` method.
+
+Our application gets the contents of the text message from the ``message`` parameter 
+that is passed to the method as a parameter. The ``message`` parameter is an object 
+from where we can read the contents of the message, respond to the message or even 
+read the sender of the message.
+
+Here are a couple of useful attributes and methods available in the ``message`` 
+object:
+
+    - ``message.text``
+        This attribute contains the message contents
+
+    - ``message.respond(response)``
+        Use this method to respond to a message. ``response`` is a string
+        with the contents of the response.
+
+    - ``message.date``
+        In cases where you need to access the time the message sent, this is how 
+        you gain access to this value. It's a ``datetime`` object so you might 
+        need the ``datetime`` python library to manipulate it.
+
+    - ``message.connection``
+        This is an object that allows you to access connection parameters like 
+        the identity (phone number, irc nickname, etc.) and backend. Most times 
+        you will need only the identity and you can access it from the attribute
+        ``message.connection.identity``.
+
+You'll also notice the use of an object named ``Mileage``. This is the Django model 
+we defined earlier for storing data.
+
+So we receive a message containing the string ``mileage start 2000920``. This message 
+gets processed by the ``handle`` method:
+
+    1. We do a regex search on the string. If it matches the pattern, it is processed
+       if not, it is left alone. During processing, we read the sender of the message,
+       the date and time the message was sent and the mileage reading.
+
+    2. We check if the message is a ``start`` message or ``stop`` message.
+
+    3. If it is a ``start`` message, we store those parameters we've extracted from 
+       the message in the database.
+
+    4. If it is a ``stop`` message, we attempt to retrieve the latest uncompleted entry 
+       from the database. If this doesn't exist, we assume that the ``reporter`` is 
+       attempting to stop a trip that has not been started and we send a friendly 
+       response back. If we find an entry, we update the entry with the stop mileage, 
+       stop time and set the entry as completed.
+
+       We then do a few calculations to determine the trip time, distance and average 
+       speed. We then generate a response and send this to reporter.
+
+.. note::
+
+   The ordering of your apps in the configuration file is quite important. Every app 
+   in the ``apps`` directive gets to process messages in the order in which they are 
+   listed. The ``echo`` app for instance, simply echos whatever it receives so you 
+   would want the ``mileage`` app or your own app to come before it or you can 
+   totally disable it by removing it from the list.
 
 Testing your application
 ------------------------
 
+Testing your app, can be done by using a simple backend included in RapidSMS called 
+the ``http`` backend. By default, this backend is enabled.
+
+To access this backend, you visit http://localhost:8000/http 
+
+For this to work, your RapidSMS ``router`` and included RapidSMS internal
+webserver must be running.
+
+Starting the RapidSMS router
+````````````````````````````
+::
+    ~rapidsms$ python rapidsms router
+
+You will see a couple of startup messages. If all goes well, you should see the following 
+at the end.::
+
+    2009-07-09 17:28:36,637 INFO [router]: SERVING FOREVER...
+
+To stop the router, press CONTROL-C
+
+Starting the RapidSMS internal webserver
+````````````````````````````````````````
+
+Earlier in this tutorial, we started the internal webserver. The procedure 
+remains the same. This however, should be done in a separate window::
+    
+    ~rapidsms$ python rapidsms runserver 8000
+    Validating models...
+    0 errors found
+
+    Django version 1.0.2 final, using settings 'webui.settings'
+    Development server is running at http://127.0.0.1:8000/
+    Quit the server with CONTROL-C.
+
+Now you can visit `http://localhost:8000/http` on your web browser.
+
+Type in any phone number you want to use for the test and type in your message: 
+e.g. ``mileage start 2000``. A couple of moments later (just to simulate a delay), 
+send another message with the content: ``mileage stop 2020`` (for instance).
+
+You will see output similar to the screenshot below:
+
+.. image:: rapidsms-mileage-test.png
+
+The red lines indicate messages you send to RapidSMS and the green lines 
+indicate messages you receive from RapidSMS.
+
+Congratulations! You've just written and tested your first RapidSMS application.
