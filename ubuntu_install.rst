@@ -100,7 +100,7 @@ This apt command will install *all* the packages listed above::
     > sudo apt-get install git-core python-pysqlite2 mysql-server python-mysqldb python-django python-serial python-tz picocom sqlite3 sqlite3-doc emacs22-nox
     
 
-4 Retrieve PyGSM from GitHub_ and Install
+4 Retrieve and Install PyGSM from GitHub_ 
 --------------------------------------------
 The source code for PyGSM_ is stored at GitHub_. You use the 'git' command to retrieve it.
 
@@ -120,7 +120,7 @@ Compile and install PyGSM
     > sudo python setup.py install
     
 
-5 Retrieve RapidSMS from GitHub_ and Install
+5 Retrieve and Install RapidSMS from GitHub_ 
 --------------------------------------------
 The source code for RapidSMS_ is stored at GitHub_. You use the 'git' command to retrieve it.
 
