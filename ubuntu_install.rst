@@ -135,7 +135,7 @@ __ `RapidSMS Forks`_
 
 You can view all the `RapidSMS Forks here`__
 
-The **main** fork is ``rapidsms / rapidsms``. Unless you *know* you need something else, this is the one you should use.
+The **main** fork is ``rapidsms/rapidsms``. Unless you *know* you need something else, this is the one you should use.
 
 .. IMPORTANT:: If you don't know which fork to use, please ask for help on the `RapidSMS email group`_
 
