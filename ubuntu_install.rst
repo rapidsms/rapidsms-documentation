@@ -79,11 +79,12 @@ OR
 
 * **python-pysqlite2**: Support for Sqlite3 in Python 
     (I know, the numbering is confusing, but pysqlite2 *is* for Sqlite3) 
-    .. NOTE::
-       Currently SQLite should be used for development and
-       testing only. The multi-process nature of RapidSMS_
-       does not interact stably enough with SQLite for use
-       in production.
+
+.. NOTE::
+   Currently SQLite should be used for development and
+   testing only. The multi-process nature of RapidSMS_
+   does not interact stably enough with SQLite for use
+   in production.
        
 The following packages are OPTIONAL but useful to have, though you can leave them out if you want to create a minimal system and avoid downloading any more packages than you absolutely need:
 
