@@ -233,6 +233,6 @@ The following commands create a test project (remember to replace `rapidsms` wit
     > ./manage.py runserver &
 
 
-Now open a browser and connect to `http://localhost:8000 <http://localhost:8000>`_
+Now open a browser and connect to http://localhost:8000
 
 You should see a RapidSMS dashboard.
