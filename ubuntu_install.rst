@@ -6,7 +6,7 @@
 .. _Ubuntu: http://www.ubuntu.com
 .. _GitHub: http://github.com
 .. _RapidSMS Forks: http://github.com/unicefinnovation/rapidsms/network/members
-__ `RapidSMS Forks`_
+_rapidsms_forks `RapidSMS Forks`_
 
 Installing RapidSMS on Ubuntu 9.10 Jaunty
 ==========================================
@@ -66,12 +66,14 @@ The install images and CDs for Ubuntu are always a little out of date. Before in
 4 Install required and useful packages
 --------------------------------------
 The following packages are required to complete the install:
+
 * **git-core**: the 'git' command line for retrieving code from GitHub_
 * **python-django**: the Django application server (the basis of RapidSMS_)
 * **python-serial**: Python serial libraries needed to run PyGSM_
 * **python-tz**: Python timezone libraries
 
 You will also need at least one of the following database systems:
+
 * **mysql-server**: The MySQL server
 * **python-mysqldb**: Python library access to MySQL
 
@@ -86,6 +88,7 @@ OR
        in production.
        
 The following packages are OPTIONAL but useful to have, though you can leave them out if you want to create a minimal system and avoid downloading any more packages than you absolutely need:
+
 * **picocom**: a program for talking to modems over serial ports. 
     *Very* useful for debugging modem/handset connection problems.
 * **sqlite3**: a command line program for accessing sqlite3 databases. 
@@ -109,7 +112,7 @@ Choosing the correct Fork
 The most confusing part of downloading RapidSMS is decide *which version* to download! 
 With all the development happening right now there are more than **10** versions of RapidSMS. In GitHub_ terminology, each version is called a *fork*
 
-You can view all the `RapidSMS Forks here`__
+You can view all the `RapidSMS Forks here`_rapidsms_forks
 
 The ''main'' fork is '''unicefinnovation / rapidsms''', but this fork is often not the newest.
 
