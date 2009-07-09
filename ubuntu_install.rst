@@ -5,8 +5,6 @@
 .. _Get Ubuntu: http://www.ubuntu.com/getubuntu 
 .. _Ubuntu: http://www.ubuntu.com
 .. _GitHub: http://github.com
-.. _RapidSMS Forks: http://github.com/unicefinnovation/rapidsms/network/members
-__rapidsms_forks `RapidSMS Forks`_
 
 Installing RapidSMS on Ubuntu 9.10 Jaunty
 ==========================================
@@ -112,7 +110,9 @@ Choosing the correct Fork
 The most confusing part of downloading RapidSMS is decide *which version* to download! 
 With all the development happening right now there are more than **10** versions of RapidSMS. In GitHub_ terminology, each version is called a *fork*
 
-You can view all the `RapidSMS Forks here`__rapidsms_forks
+.. _RapidSMS Forks: http://github.com/unicefinnovation/rapidsms/network/members
+__ `RapidSMS Forks`_
+You can view all the `RapidSMS Forks here`__
 
 The ''main'' fork is '''unicefinnovation / rapidsms''', but this fork is often not the newest.
 
