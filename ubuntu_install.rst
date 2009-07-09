@@ -36,10 +36,11 @@ There are many options in how to install the software so a few comments on why t
 
 .. NOTE::
     If you choose to install any of the non-mainline forks,
-   it's a good idea to name your install with the fork name
-   so that you can easily remember where it came from.
-   E.g.: For example, if you use the 'ewheeler' fork, 
-   put RapidSMS_ in /usr/local/ewheeler-rapidsms. 
+    it's a good idea to name your install with the fork name
+    so that you can easily remember where it came from.
+    
+    For example, if you use the 'ewheeler' fork, 
+    put RapidSMS_ in /usr/local/ewheeler-rapidsms. 
 
 1 Install Ubuntu Jaunty
 -----------------------
