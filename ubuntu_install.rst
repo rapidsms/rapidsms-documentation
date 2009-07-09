@@ -17,32 +17,25 @@ These instructions explain how to install RapidSMS_ with a PyGSM_ backend for co
 
 There are many options in how to install the software so a few comments on why to do it as described below:
 
- * **Stay as close to standard Ubuntu Software install processes**: 
-      In Ubuntu software is installed from Ubuntu central repositories
-      using a package manager like synaptic_ or the command line apt_ 
-      commands. In setting up a RapidSMS server using *standard* Ubuntu 
-      packages makes set-up and maintenance easier. 
+* **Stay as close to standard Ubuntu Software install processes**: In Ubuntu software is installed from Ubuntu central repositories using a package manager like synaptic_ or the command line apt_ commands. In setting up a RapidSMS server using *standard* Ubuntu packages makes set-up and maintenance easier. 
 
-	.. NOTE:: I
-	   The command-line is really useful for managing remote servers, 
-	   so this documentation will use apt_ . 
-	   
-	   If you aren't comfortable with the command-line feel free to 
-	   substitute synaptic_. 
+.. NOTE::
+    The command-line is really useful for managing remote servers, 
+    so this documentation will use apt_ . 
 
- * **Install Paths**: On Ubuntu, ``/usr/local`` is a good place to put
-    custom software packages. If you are installing RapidSMS to deploy
-    or develop an application, ``/usr/local`` is a good spot. 
-    
-    If you are installing to develop the platform itself, 
-    ``~/home/dev`` is probably a better spot. 
+    If you aren't comfortable with the command-line feel free to 
+    substitute synaptic_. 
 
-    .. NOTE::
-       If you choose to install any of the non-mainline forks,
-       it's a good idea to name your install with the fork name
-       so that you can easily remember where it came from.
-       E.g.: For example, if you use the 'ewheeler' fork, 
-       put RapidSMS_ in /usr/local/ewheeler-rapidsms. 
+* **Install Paths**: On Ubuntu, ``/usr/local`` is a good place to put custom software packages. If you are installing RapidSMS to deploy or develop an application, ``/usr/local`` is a good spot. 
+
+If you are installing to develop the platform itself, ``~/home/dev`` is probably a better spot. 
+
+.. NOTE::
+    If you choose to install any of the non-mainline forks,
+   it's a good idea to name your install with the fork name
+   so that you can easily remember where it came from.
+   E.g.: For example, if you use the 'ewheeler' fork, 
+   put RapidSMS_ in /usr/local/ewheeler-rapidsms. 
 
 1 Install Ubuntu Jaunty
 -----------------------
