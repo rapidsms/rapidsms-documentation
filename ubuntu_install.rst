@@ -107,7 +107,7 @@ This apt command will install *all* the packages listed above::
 The source code for PyGSM_ is stored at GitHub_. You use the 'git' command to retrieve it.
 
 Cloning PyGSM code from GitHub_
-+++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++
 Once you have selected your fork, you can do the following to *clone* it (copy it) to your local machine::
 
     > cd /usr/local
