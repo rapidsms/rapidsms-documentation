@@ -17,7 +17,10 @@ These instructions explain how to install RapidSMS_ with a PyGSM_ backend for co
 
 There are many options in how to install the software so a few comments on why to do it as described below:
 
-* **Stay as close to standard Ubuntu Software install processes**: In Ubuntu software is installed from Ubuntu central repositories using a package manager like synaptic_ or the command line apt_ commands. In setting up a RapidSMS server using *standard* Ubuntu packages makes set-up and maintenance easier. 
+* **Stay as close to standard Ubuntu Software install processes**: 
+    In Ubuntu software is installed from Ubuntu central repositories using a package manager like synaptic_ or the command line apt_ commands. 
+    
+    In setting up a RapidSMS server using *standard* Ubuntu packages makes set-up and maintenance easier. 
 
 .. NOTE::
     The command-line is really useful for managing remote servers, 
@@ -26,9 +29,10 @@ There are many options in how to install the software so a few comments on why t
     If you aren't comfortable with the command-line feel free to 
     substitute synaptic_. 
 
-* **Install Paths**: On Ubuntu, ``/usr/local`` is a good place to put custom software packages. If you are installing RapidSMS to deploy or develop an application, ``/usr/local`` is a good spot. 
+* **Install Paths**: 
+    On Ubuntu, ``/usr/local`` is a good place to put custom software packages. If you are installing RapidSMS to deploy or develop an application, ``/usr/local`` is a good spot. 
 
-If you are installing to develop the platform itself, ``~/home/dev`` is probably a better spot. 
+    If you are installing to develop the platform itself, ``~/home/dev`` is probably a better spot. 
 
 .. NOTE::
     If you choose to install any of the non-mainline forks,
