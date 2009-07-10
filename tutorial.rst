@@ -383,7 +383,9 @@ webserver must be running.
 
 Starting the RapidSMS router
 ````````````````````````````
-::
+
+This is how to start the RapidSMS router::
+
     ~rapidsms$ python rapidsms router
 
 You will see a couple of startup messages. If all goes well, you should see the following 
