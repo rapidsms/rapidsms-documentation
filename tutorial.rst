@@ -214,6 +214,7 @@ the code listing below. This should go into the ``app.py`` file in the
     import rapidsms
     import re
     from models import *
+    from datetime import datetime
 
     class App (rapidsms.app.App):
         
@@ -234,7 +235,7 @@ the code listing below. This should go into the ``app.py`` file in the
             response = self.pattern.findall(message.text)
             if response:
                 entry = response[0]
-                entry_time = message.date
+                entry_time = datetime.now()
                 reporter = message.connection.identity
                 mileage = int(entry[1])
 
