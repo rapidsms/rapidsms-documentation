@@ -225,7 +225,7 @@ The following commands create a test project (remember to replace `rapidsms` wit
     > cd ~/rapidsms-projects
     > rapidsms startproject test-project
     > cd ~/rapidsms-projects/test-project
-    > cp -a /usr/local/rapidsms/apps/* apps/
+    > cp -a /usr/local/rapidsms/apps/* ./apps/
     > cp rapidsms.ini.example rapidsms.ini
     > chmod a+x ./manage.py
     > ./manage.py syncdb
