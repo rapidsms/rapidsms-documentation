@@ -93,11 +93,11 @@ web_languages and sms_languages override languages.
 
 Example configuration::
 
-    [i18n]
-    default_language=fr
-    languages=(fr,Français),(en,English)
-    web_languages=(fr,Français),(en,English,Engrish)
-    sms_languages=(fr,Français),(dyu,Dyuola,Joola),(de,German)
+	[i18n]
+	default_language=fr
+	languages=(fr,Français),(en,English)
+	web_languages=(fr,Français),(en,English,Engrish)
+	sms_languages=(fr,Français),(dyu,Dyuola,Joola),(de,German)
 
 
 ===============================
