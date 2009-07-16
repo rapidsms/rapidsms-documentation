@@ -40,19 +40,19 @@ So, for example::
 A few things to note:
 * "You said: %(message)s" is exactly what the translators will see
 * Translate **before** inserting formatted variables
-* Insert formatted variables as dictionary objects, to prevent breakage when translations aren’t correct
+* Insert formatted variables as dictionary objects, to prevent breakage when translations aren't correct
 
 
 Generate translation files
 --------------------------
 
-From the root directory of rapidsms, create a directory called ‘locale’. Then run::
+From the root directory of rapidsms, create a directory called 'locale'. Then run::
 
     django-admin.py makemessages -l dyu
 
-where ‘dyu’ is the language code you’re targeting.
+where 'dyu' is the language code you're targeting.
 
-(*NOTE that while ISO_639-3_ is our language code choice of preference, django DOES NOT support it. They do 639-1 (see: DjangoLanguageCodeTicket_). This isn’t a problem for translating text messages, but it does mean that for every language already supported by django that you want to show up in the webui, you have to use the two-letter code. Bottom line: use ‘en’ instead of ‘eng’, ‘fr’ instead of ‘fre’ as the language code for the web UI.*)
+(*NOTE that while ISO_639-3_ is our language code choice of preference, django DOES NOT support it. They do 639-1 (see: DjangoLanguageCodeTicket_). This isn't a problem for translating text messages, but it does mean that for every language already supported by django that you want to show up in the webui, you have to use the two-letter code. Bottom line: use 'en' instead of 'eng', 'fr' instead of 'fre' as the language code for the web UI.*)
 
 Copy the contents of locale/YOUR_LANGUAGE_CODE to contrib/locale/YOUR_LANGUAGE_CODE. Note that there is now a file called locale/YOUR_LANGUAGE_CODE/LC_MESSAGES/django.po. *(Note that this file must be called django.po for django to recognize it)*
 
@@ -62,7 +62,7 @@ Copy the contents of locale/YOUR_LANGUAGE_CODE to contrib/locale/YOUR_LANGUAGE_C
 At the top of your django.po file, so that xgettext and similar utilities can recognize character encodings.*
 
 **This is currently broken**
-(From your project’s root directory, run::
+(From your project's root directory, run::
 
     django-admin.py compilemessages
 
@@ -102,11 +102,11 @@ As per RapidSMS convention, be sure to put::
 
 at the top of the file so that everything displays correctly.
 
-If you’re feeding any special characters into RapidSMS unit tests, remember to declare the test string as Unicode. i.e.::
+If you're feeding any special characters into RapidSMS unit tests, remember to declare the test string as Unicode. i.e.::
 
     testUserReplyInFrench = u"""
         123456789 <  Bonjour
-        123456789 >  Enchanté!
+        123456789 >  Enchant'!
         """
 
 ===============================
