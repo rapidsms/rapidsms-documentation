@@ -10,6 +10,7 @@ RapidSMS Internationalization (i18n)
 ====================================
 
 *Basic Procedure*
+
 1. Mark all strings needing translation for sms, webui, or both
 2. Generate translation files
 3. Specify languages in rapidsms.ini
@@ -57,8 +58,10 @@ where 'dyu' is the language code you're targeting.
 Copy the contents of locale/YOUR_LANGUAGE_CODE to contrib/locale/YOUR_LANGUAGE_CODE. Note that there is now a file called locale/YOUR_LANGUAGE_CODE/LC_MESSAGES/django.po. *(Note that this file must be called django.po for django to recognize it)*
 
 *Optional: As per RapidSMS convention, it's useful to put::
+
 #!/usr/bin/env python
 # vim: ai ts=4 sts=4 et sw=4 encoding=utf-8
+
 At the top of your django.po file, so that xgettext and similar utilities can recognize character encodings.*
 
 **This is currently broken**
@@ -88,6 +91,14 @@ You can optionally specify web_languages and sms_languages
 if you want to support different languages in the web vs sms UI.
 web_languages and sms_languages override languages.
 
+Example configuration::
+
+	[i18n]
+	default_language=fr
+	languages=(fr,Français),(en,English)
+	web_languages=(fr,Français),(en,English,Engrish)
+	sms_languages=(fr,Français),(dyu,Dyuola,Joola),(de,German)
+
 
 ===============================
 Unit Tests
@@ -113,15 +124,17 @@ If you're feeding any special characters into RapidSMS unit tests, remember to d
 References
 ===============================
 
+
 * DjangoI18n_ : Django's i18n documentation
 * PythonI18n_ : Python's class-based translation API (we use for sms messages)
 * GettextManual_ : GNU gettext manual. Gettext is the tool on which everything else is based.
+
 
 ===============================
 Tools
 ===============================
 
-Utilities/is_gsm_checker.py is a script which takes an input file and tries to interpret it as GSM character encoding. This is useful in case you want to make sure your sms translations will show up properly on another phone.
+Contrib/scripts/is_gsm_checker.py is a script which takes an input file and tries to interpret it as GSM character encoding. This is useful in case you want to make sure your sms translations will show up properly on another phone.
 
 It attempts to read the file first as utf-8, then wp1252 (ANSI), then utf-16. If it fails, it reports the character and line number on which it failed. 
 
@@ -140,8 +153,6 @@ If you're working in eclipse, it's useful to make sure your default text encodin
 
 
 
-
-
 Known Bugs
 ------------------
 
@@ -149,10 +160,10 @@ Known Bugs
 
 * In unit tests, when RapidSMS delivers Unicode responses, some consoles will throw a UnicodeDecodeError (also seen as "unprintable AssertionError object", currently caught as "A problem interpreting non-ascii characters for your display"). For me, these unit tests fail on a windows console but pass in eclipse. Go figure.  
 
-None of core has been tagged properly. i.e. We should:
-* Tag templates, e.g. {% trans "words" %}
-* Tag strings to translate, e.g. _("string to translate") 
-* Interpret messages send within a default locale, e.g. message.send( _t(_default,message_to_send) )
+* None of core has been tagged properly. i.e. We should:
+  * Tag templates, e.g. {% trans "words" %}
+  * Tag strings to translate, e.g. _("string to translate") 
+  * Interpret messages sent within a default locale, e.g. message.send( _t(_default,message_to_send) )
 
 
 * webui and sms currently do not support different default languages. 
