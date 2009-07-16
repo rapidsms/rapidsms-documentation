@@ -5,9 +5,9 @@
 .. _DjangoLanguageCodeTicket: http://code.djangoproject.com/ticket/11435
 
 
-===============================
+====================================
 RapidSMS Internationalization (i18n)
-===============================
+====================================
 
 *Basic Procedure*
 1. Mark all strings needing translation for sms, webui, or both
@@ -26,15 +26,17 @@ For webui (\*.html), this typically means
 For SMS, this typically means
 * Add the appropriate imports to the top of the .py file::
 
-from rapidsms.i18n import ugettext_from_locale as _t
-from rapidsms.i18n import ugettext_noop as _
+    from rapidsms.i18n import ugettext_from_locale as _t
+    from rapidsms.i18n import ugettext_noop as _
 
 '_' will wrap strings that need to be translated for text messages
 '_t' will translate strings given a locale
 
 So, for example::
+
         response = _t( _("You said: %(message)s"), locale ) % \
                       {"message":message.text}
+
 A few things to note:
 * "You said: %(message)s" is exactly what the translators will see
 * Translate **before** inserting formatted variables
@@ -42,7 +44,7 @@ A few things to note:
 
 
 Generate translation files
-------------------
+--------------------------
 
 From the root directory of rapidsms, create a directory called ‘locale’. Then run::
 
@@ -50,9 +52,7 @@ From the root directory of rapidsms, create a directory called ‘locale’. Then ru
 
 where ‘dyu’ is the language code you’re targeting.
 
-(*NOTE that while ISO_639-3_ is our language code choice of preference, django DOES NOT support it. They do 639-1 (see: DjangoLanguageCodeTicket_). This isn’t a problem for translating text messages, but it does mean that for every language already supported by django that you want to show up in the webui, you have to use the two-letter code.
-
-Bottom line: use ‘en’ instead of ‘eng’, ‘fr’ instead of ‘fre’ as the language code for the web UI.*)
+(*NOTE that while ISO_639-3_ is our language code choice of preference, django DOES NOT support it. They do 639-1 (see: DjangoLanguageCodeTicket_). This isn’t a problem for translating text messages, but it does mean that for every language already supported by django that you want to show up in the webui, you have to use the two-letter code. Bottom line: use ‘en’ instead of ‘eng’, ‘fr’ instead of ‘fre’ as the language code for the web UI.*)
 
 Copy the contents of locale/YOUR_LANGUAGE_CODE to contrib/locale/YOUR_LANGUAGE_CODE. Note that there is now a file called locale/YOUR_LANGUAGE_CODE/LC_MESSAGES/django.po. *(Note that this file must be called django.po for django to recognize it)*
 
@@ -62,12 +62,13 @@ Copy the contents of locale/YOUR_LANGUAGE_CODE to contrib/locale/YOUR_LANGUAGE_C
 At the top of your django.po file, so that xgettext and similar utilities can recognize character encodings.*
 
 **This is currently broken**
-*(From your project’s root directory, run::
+(From your project’s root directory, run::
 
     django-admin.py compilemessages
 
-and you will see django.mo files appear in the same directory as your django.po files.)*
+and you will see django.mo files appear in the same directory as your django.po files.)
 
+**Use this for now**
 Alternatively, install xgettext utilities (windows users, read the bottom of DjangoI18n_) and from the LC_MESSAGES directory, you can run::
 
     msgfmt -o django.mo django.po
@@ -76,7 +77,7 @@ to generate django.mo.
 
 
 Specify languages in rapidsms.ini
-------------------
+---------------------------------
 Uncomment the [i18n] section in rapidsms.ini.
 
 At minimum, you should define 'default_language' and 'languages'. 
@@ -95,8 +96,10 @@ Unit Tests
 A few notes about running unit tests:
 
 As per RapidSMS convention, be sure to put::
+
     #!/usr/bin/env python
     # vim: ai ts=4 sts=4 et sw=4 encoding=utf-8
+
 at the top of the file so that everything displays correctly.
 
 If you’re feeding any special characters into RapidSMS unit tests, remember to declare the test string as Unicode. i.e.::
