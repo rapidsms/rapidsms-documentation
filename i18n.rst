@@ -1,0 +1,155 @@
+.. _DjangoI18n: http://docs.djangoproject.com/en/dev/topics/i18n/
+.. _PythonI18n: http://www.python.org/doc/2.5.2/lib/node732.html
+.. _GettextManual: http://www.gnu.org/software/gettext/manual/gettext.html
+.. _ISO_639-3: http://en.wikipedia.org/wiki/ISO_639-3
+.. _DjangoLanguageCodeTicket: http://code.djangoproject.com/ticket/11435
+
+
+===============================
+RapidSMS Internationalization (i18n)
+===============================
+
+*Basic Procedure*
+1. Mark all strings needing translation for sms, webui, or both
+2. Generate translation files
+3. Specify languages in rapidsms.ini
+
+
+1. Mark Strings
+------------------
+Mark all strings needing translation for sms, webui, or both
+
+For webui (\*.html), this typically means
+* Adding {% load i18n %} to the top
+* Tagging strings like {% trans "hello world" %}
+
+For SMS, this typically means
+* Add the appropriate imports to the top of the .py file::
+
+from rapidsms.i18n import ugettext_from_locale as _t
+from rapidsms.i18n import ugettext_noop as _
+
+'_' will wrap strings that need to be translated for text messages
+'_t' will translate strings given a locale
+
+So, for example::
+        response = _t( _("You said: %(message)s"), locale ) % \
+                      {"message":message.text}
+A few things to note:
+* "You said: %(message)s" is exactly what the translators will see
+* Translate **before** inserting formatted variables
+* Insert formatted variables as dictionary objects, to prevent breakage when translations aren’t correct
+
+
+Generate translation files
+------------------
+
+From the root directory of rapidsms, create a directory called ‘locale’. Then run::
+
+    django-admin.py makemessages -l dyu
+
+where ‘dyu’ is the language code you’re targeting.
+
+(*NOTE that while ISO_639-3_ is our language code choice of preference, django DOES NOT support it. They do 639-1 (see: DjangoLanguageCodeTicket_). This isn’t a problem for translating text messages, but it does mean that for every language already supported by django that you want to show up in the webui, you have to use the two-letter code.
+
+Bottom line: use ‘en’ instead of ‘eng’, ‘fr’ instead of ‘fre’ as the language code for the web UI.*)
+
+Copy the contents of locale/YOUR_LANGUAGE_CODE to contrib/locale/YOUR_LANGUAGE_CODE. Note that there is now a file called locale/YOUR_LANGUAGE_CODE/LC_MESSAGES/django.po. *(Note that this file must be called django.po for django to recognize it)*
+
+*Optional: As per RapidSMS convention, it's useful to put::
+#!/usr/bin/env python
+# vim: ai ts=4 sts=4 et sw=4 encoding=utf-8
+At the top of your django.po file, so that xgettext and similar utilities can recognize character encodings.*
+
+**This is currently broken**
+*(From your project’s root directory, run::
+
+    django-admin.py compilemessages
+
+and you will see django.mo files appear in the same directory as your django.po files.)*
+
+Alternatively, install xgettext utilities (windows users, read the bottom of DjangoI18n_) and from the LC_MESSAGES directory, you can run::
+
+    msgfmt -o django.mo django.po
+
+to generate django.mo.
+
+
+Specify languages in rapidsms.ini
+------------------
+Uncomment the [i18n] section in rapidsms.ini.
+
+At minimum, you should define 'default_language' and 'languages'. 
+'languages' specifies the supported languages. It is a comma-
+separated list of tuples where the first list in the tuple
+is the language code and the remainder are associated names/aliases.
+You can optionally specify web_languages and sms_languages
+if you want to support different languages in the web vs sms UI.
+web_languages and sms_languages override languages.
+
+
+===============================
+Unit Tests
+===============================
+
+A few notes about running unit tests:
+
+As per RapidSMS convention, be sure to put::
+    #!/usr/bin/env python
+    # vim: ai ts=4 sts=4 et sw=4 encoding=utf-8
+at the top of the file so that everything displays correctly.
+
+If you’re feeding any special characters into RapidSMS unit tests, remember to declare the test string as Unicode. i.e.::
+
+    testUserReplyInFrench = u"""
+        123456789 <  Bonjour
+        123456789 >  Enchanté!
+        """
+
+===============================
+References
+===============================
+
+* DjangoI18n_ : Django's i18n documentation
+* PythonI18n_ : Python's class-based translation API (we use for sms messages)
+* GettextManual_ : GNU gettext manual. Gettext is the tool on which everything else is based.
+
+===============================
+Tools
+===============================
+
+Utilities/is_gsm_checker.py is a script which takes an input file and tries to interpret it as GSM character encoding. This is useful in case you want to make sure your sms translations will show up properly on another phone.
+
+It attempts to read the file first as utf-8, then wp1252 (ANSI), then utf-16. If it fails, it reports the character and line number on which it failed. 
+
+===============================
+Miscellaneous Notes
+===============================
+
+Any phone operating on the GSM standard will transmit messages either in the GSM character encoding or UCS-2. This is, however, no guarantee about the kind of character encoding your phone/modem will spit out at you.
+
+Many of the headaches and caveats will disappear in Python 3000, when we move over to native utf-8 strings. 
+
+If you're working in eclipse, it's useful to make sure your default text encoding is utf-8. To do this (in Galileo), go to Window -> Preferences -> General -> Workspace, and change "Text file encoding" to utf-8.
+
+
+
+
+
+
+
+
+Known Bugs
+------------------
+
+* HttpTester collapses when you try to push in Unicode
+
+* In unit tests, when RapidSMS delivers Unicode responses, some consoles will throw a UnicodeDecodeError (also seen as "unprintable AssertionError object", currently caught as "A problem interpreting non-ascii characters for your display"). For me, these unit tests fail on a windows console but pass in eclipse. Go figure.  
+
+None of core has been tagged properly. i.e. We should:
+* Tag templates, e.g. {% trans "words" %}
+* Tag strings to translate, e.g. _("string to translate") 
+* Interpret messages send within a default locale, e.g. message.send( _t(_default,message_to_send) )
+
+
+* webui and sms currently do not support different default languages. 
