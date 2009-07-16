@@ -57,12 +57,12 @@ where 'dyu' is the language code you're targeting.
 
 Copy the contents of locale/YOUR_LANGUAGE_CODE to contrib/locale/YOUR_LANGUAGE_CODE. Note that there is now a file called locale/YOUR_LANGUAGE_CODE/LC_MESSAGES/django.po. *(Note that this file must be called django.po for django to recognize it)*
 
-*Optional: As per RapidSMS convention, it's useful to put::
+Optional: As per RapidSMS convention, it's useful to put::
 
-#!/usr/bin/env python
-# vim: ai ts=4 sts=4 et sw=4 encoding=utf-8
+    #!/usr/bin/env python
+    # vim: ai ts=4 sts=4 et sw=4 encoding=utf-8
 
-At the top of your django.po file, so that xgettext and similar utilities can recognize character encodings.*
+At the top of your django.po file, so that xgettext and similar utilities can recognize character encodings.
 
 **This is currently broken**
 (From your project's root directory, run::
