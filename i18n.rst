@@ -95,9 +95,9 @@ Example configuration::
 
     [i18n]
     default_language=fr
-    languages=(fr,Français),(en,English)
-    web_languages=(fr,Français),(en,English,Engrish)
-    sms_languages=(fr,Français),(dyu,Dyuola,Joola),(de,German)
+    languages=(fr,Francais),(en,English)
+    web_languages=(fr,Francais),(en,English,Engrish)
+    sms_languages=(fr,Francais),(dyu,Dyuola,Joola),(de,German)
 
 
 ===============================
