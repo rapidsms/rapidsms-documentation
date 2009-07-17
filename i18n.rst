@@ -20,9 +20,15 @@ RapidSMS Internationalization (i18n)
 ------------------
 Mark all strings needing translation for sms, webui, or both
 
-For webui (\*.html), this typically means
-* Adding {% load i18n %} to the top
-* Tagging strings like {% trans "hello world" %}
+For webui templates (\*.html), this means that you'll need to
+* Add {% load i18n %} to the top
+* Tagg strings like {% trans "hello world" %}
+
+For webui views (typically views.py), this means that you will add::
+
+    from django.utils.translation import ugettext as _
+
+and then tag all of your translatable strings as _("string").
 
 For SMS, this typically means
 * Add the appropriate imports to the top of the .py file::
@@ -154,7 +160,9 @@ If you're working in eclipse, it's useful to make sure your default text encodin
 
 
 Known Bugs
-------------------
+---------------------------
+
+* Web translations and sms translations (by runserver and router respectively) are currently routed through completely different mechanisms (rapidsms ugettext is different from django ugettext). One can imagine merging these two functions for clarity and repeatability of code - BUT FIRST let's wait until 1) we have a better idea of what 'contacts/reporters' (and hence user preferences) will look like, and 2) we have a clearer, codified mechanism for runserver and router to communicate, and for functions to know whether they are being called by runserver or by router.
 
 * HttpTester collapses when you try to push in Unicode
 
