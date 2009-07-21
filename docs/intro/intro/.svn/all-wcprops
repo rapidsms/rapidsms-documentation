@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/11235/django/trunk/docs/intro
+END
+tutorial01.txt
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/11044/django/trunk/docs/intro/tutorial01.txt
+END
+tutorial02.txt
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/11044/django/trunk/docs/intro/tutorial02.txt
+END
+whatsnext.txt
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/9310/django/trunk/docs/intro/whatsnext.txt
+END
+install.txt
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/9632/django/trunk/docs/intro/install.txt
+END
+overview.txt
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/11044/django/trunk/docs/intro/overview.txt
+END
+tutorial03.txt
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/11235/django/trunk/docs/intro/tutorial03.txt
+END
+index.txt
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/8506/django/trunk/docs/intro/index.txt
+END
+tutorial04.txt
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/10973/django/trunk/docs/intro/tutorial04.txt
+END

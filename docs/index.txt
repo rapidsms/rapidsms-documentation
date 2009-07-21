@@ -1,0 +1,66 @@
+.. RapidSMS documentation master file, created by
+   sphinx-quickstart on Fri Jul 17 13:18:02 2009.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+====================================
+RapidSMS documentation
+====================================
+
+.. rubric:: Everything you need to know about RapidSMS (and then some).
+
+Getting help
+============
+
+Having trouble? We'd like to help!
+
+* Try the :ref:`FAQ <faq-index>` -- it's got answers to many common questions.
+
+* Looking for specific information? Try the :ref:`genindex`, :ref:`modindex` or
+  the :ref:`detailed table of contents <contents>`.
+
+* Search for information in the `archives of the rapidsms google groups mailing list`_, or
+  `post a question`_.
+
+* Ask a question in the `#rapidsms IRC channel`_, or search the `IRC logs`_ to see
+  if its been asked before.
+
+* Report bugs with rapidsms in our `ticket tracker`_.
+
+
+.. _archives of the rapidsms google groups mailing list: http://groups.google.com/group/rapidsms
+.. _post a question: http://groups.google.com/group/rapidsms
+.. _#rapidsms IRC channel: irc://irc.freenode.net/rapidsms
+.. _IRC logs: **PLEASE UPDATE  - WHERE ARE IRC LOGS -- **
+.. _ticket tracker: http://github.com/rapidsms
+
+First steps
+===========
+
+    * **From scratch:**
+      :ref:`Overview <intro-overview>` |
+
+    * **Tutorial:**
+      :ref:`Building an App <intro-tutorial01>` |
+
+The API
+===============
+
+    * **Trying to generate via autodoc:**
+
+
+
+The RapidSMS open-source project
+==============================
+
+    * **Community:**
+      :ref:`How to get involved <internals-contributing>` |
+      :ref:`The release process <internals-release-process>` |
+      :ref:`Team of committers <internals-committers>`
+
+    * **Documentation:**
+      :ref:`About this documentation <internals-documentation>`
+
+    * **Who Uses RapidSMS:**
+
+

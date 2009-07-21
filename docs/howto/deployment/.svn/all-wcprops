@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/11249/django/trunk/docs/howto/deployment
+END
+modpython.txt
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/11170/django/trunk/docs/howto/deployment/modpython.txt
+END
+index.txt
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/10812/django/trunk/docs/howto/deployment/index.txt
+END
+modwsgi.txt
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/11249/django/trunk/docs/howto/deployment/modwsgi.txt
+END
+fastcgi.txt
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/10413/django/trunk/docs/howto/deployment/fastcgi.txt
+END

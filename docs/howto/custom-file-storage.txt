@@ -1,0 +1,4 @@
+.. _howto-custom-file-storage:
+
+Writing a custom storage system
+===============================

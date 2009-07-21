@@ -1,0 +1,4 @@
+.. _howto-error-reporting:
+
+Error reporting via e-mail
+==========================

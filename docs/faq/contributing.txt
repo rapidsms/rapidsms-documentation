@@ -1,0 +1,7 @@
+.. _faq-contributing:
+
+FAQ: Contributing code
+======================
+
+How can I get started contributing code to RapidSMS?
+--------------------------------------------------

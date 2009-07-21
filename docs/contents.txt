@@ -1,0 +1,23 @@
+.. _contents:
+
+=============================
+RapidSMS documentation contents
+=============================
+
+.. toctree::
+   :maxdepth: 2
+   
+   intro/index
+   howto/index
+   faq/index
+   glossary
+   releases/index
+   internals/index
+
+Indices, glossary and tables
+============================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`glossary`
+

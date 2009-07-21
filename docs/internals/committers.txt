@@ -1,0 +1,8 @@
+.. _internals-committers:
+
+=================
+RapidSMS committers
+=================
+
+The original team
+=================
