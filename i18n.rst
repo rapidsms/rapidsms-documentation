@@ -109,6 +109,18 @@ Example configuration::
     sms_languages=(fr,Francais),(dyu,Dyuola,Joola),(de,German)
 
 
+================================================
+What happens when translation files are missing?
+================================================
+i18n expects translations to be found within contrib/locale.
+For example, english translations would be available within <RAPIDSMS_INSTALL_DIR>/contrib/locale/en/LC_MESSAGES/django.mo
+If this directory is not present:
+
+* If [i18n] is not in rapidsms.ini, everything runs exactly as it would without i18n
+* If [i18n] is in rapidsms.ini and languages are specified, both web and sms will try to find the appropriate translation file and if not default to english for that translation
+* If [i18n] is in rapidsms.ini, but no other settings are specified, then the default is assumed to be english for both web and sms. If the translation files for English cannot be found, all marked strings such as _("string") will return "string".
+
+
 ===============================
 Unit Tests
 ===============================
