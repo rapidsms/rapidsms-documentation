@@ -73,6 +73,14 @@ Optional: As per RapidSMS convention, it's useful to put::
 
 At the top of your django.po file, so that xgettext and similar utilities can recognize character encodings.
 
+**Important Note**
+If you are translating the webui into a language which Django does not currently support (and there are many - Swahili, for instance), you'll need to add that translation file directly to your Django installation. To do this:
+
+* Create your django.po file as described above.
+* Copy the contents of <django-install-dir>/conf/locale/en to <django-install-dir>/conf/locale/<your-language-code>
+* Prepend the contents of your django.po file to <django-install-dir>/conf/locale/<your-language-code>/LC_MESSAGES/django.po (removing the header of the latter file)
+* Create the django.mo file as described below.
+
 **This is currently broken**
 (From your project's root directory, run::
 
