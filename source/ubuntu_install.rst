@@ -7,7 +7,7 @@
 .. _GitHub: http://github.com
 .. _RapidSMS email group: http://groups.google.com/group/rapidsms
 
-Installing RapidSMS on Ubuntu 9.10 Jaunty
+Installing RapidSMS on Ubuntu 9.04 Jaunty
 ==========================================
 
 Intro

@@ -1,1 +1,14 @@
+To build RapidSMS documentation, you need the sphinx python documentation
+engine. On Debian-based systems, it should be available in the python-sphinx package.
+See also http://sphinx.pocoo.org/
+
+The docs directory is a partial copy of the Django documentation structure to be
+used as a model to construct RapidSMS Documentation.
+You can build it with the following command:
 sphinx-build docs $DOCSPUBLIC
+
+The source directory contains the real RapidSMS documentation.
+You can build it with the following command:
+sphinx-build docs $DOCSPUBLIC
+
+$DOCSPUBLIC should be an existing directory where the built HTML files will be stored.

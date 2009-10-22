@@ -117,9 +117,8 @@ Example configuration::
     sms_languages=(fr,Francais),(dyu,Dyuola,Joola),(de,German)
 
 
-================================================
 What happens when translation files are missing?
-================================================
+------------------------------------------------
 i18n expects translations to be found within contrib/locale.
 For example, english translations would be available within <RAPIDSMS_INSTALL_DIR>/contrib/locale/en/LC_MESSAGES/django.mo
 If this directory is not present:
@@ -129,9 +128,8 @@ If this directory is not present:
 * If [i18n] is in rapidsms.ini, but no other settings are specified, then the default is assumed to be english for both web and sms. If the translation files for English cannot be found, all marked strings such as _("string") will return "string".
 
 
-===============================
 Unit Tests
-===============================
+----------
 
 A few notes about running unit tests:
 
@@ -149,9 +147,8 @@ If you're feeding any special characters into RapidSMS unit tests, remember to d
         123456789 >  Enchant'!
         """
 
-===============================
 References
-===============================
+----------
 
 
 * DjangoI18n_ : Django's i18n documentation
@@ -159,27 +156,21 @@ References
 * GettextManual_ : GNU gettext manual. Gettext is the tool on which everything else is based.
 
 
-===============================
 Tools
-===============================
+-----
 
 Contrib/scripts/is_gsm_checker.py is a script which takes an input file and tries to interpret it as GSM character encoding. This is useful in case you want to make sure your sms translations will show up properly on another phone.
 
 It attempts to read the file first as utf-8, then wp1252 (ANSI), then utf-16. If it fails, it reports the character and line number on which it failed. 
 
-===============================
 Miscellaneous Notes
-===============================
+-------------------
 
 Any phone operating on the GSM standard will transmit messages either in the GSM character encoding or UCS-2. This is, however, no guarantee about the kind of character encoding your phone/modem will spit out at you.
 
 Many of the headaches and caveats will disappear in Python 3000, when we move over to native utf-8 strings. 
 
 If you're working in eclipse, it's useful to make sure your default text encoding is utf-8. To do this (in Galileo), go to Window -> Preferences -> General -> Workspace, and change "Text file encoding" to utf-8.
-
-
-
-
 
 
 Known Bugs
