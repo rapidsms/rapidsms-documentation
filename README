@@ -9,6 +9,6 @@ sphinx-build docs $DOCSPUBLIC
 
 The source directory contains the real RapidSMS documentation.
 You can build it with the following command:
-sphinx-build docs $DOCSPUBLIC
+sphinx-build source $DOCSPUBLIC
 
 $DOCSPUBLIC should be an existing directory where the built HTML files will be stored.
