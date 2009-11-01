@@ -14,6 +14,7 @@ RapidSMS documentation
    tutorial
    ubuntu_install
    i18n
+   faqu
    aboutdocs
 
 Getting help
