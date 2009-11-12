@@ -29,3 +29,13 @@ Then in the same file, add a corresponding section for each network:
     type=gsm
 
 Note: you should use the pygsm backend for this to work.
+
+What if RapidSMS is not installed on the same system as the GSM device?
+=======================================================================
+
+One possible solution to this use case it to use the `Kannel gateway`_ on
+the machine which hosts the modem(s) and use the `Kannel backend`_ on the
+RapidSMS server.
+
+.. _`Kannel gateway`: http://www.kannel.org/
+.. _`Kannel backend`: http://gist.github.com/214985
