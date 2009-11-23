@@ -1,6 +1,0 @@
-.. _howto-custom-template-tags:
-
-================================
-Custom template tags and filters
-================================
-

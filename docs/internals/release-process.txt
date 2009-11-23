@@ -1,8 +1,0 @@
-.. _internals-release-process:
-
-========================
-RapidSMS release process
-========================
-
-.. _official-releases:
-

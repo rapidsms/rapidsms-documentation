@@ -1,5 +1,0 @@
-.. _howto-custom-management-commands:
-
-Writing custom rapidsms-admin commands
-====================================
-

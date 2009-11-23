@@ -1,5 +1,0 @@
-.. _howto-initial-data:
-
-=================================
-Providing initial data for models
-=================================

@@ -1,6 +1,0 @@
-.. _internals-documentation:
-
-How the RapidSMS documentation works
-==================================
-
-Sphinx

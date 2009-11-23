@@ -1,8 +1,0 @@
-.. _faq-general:
-
-FAQ: General
-============
-
-Why does this project exist?
-----------------------------
-
