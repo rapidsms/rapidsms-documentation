@@ -11,8 +11,9 @@ RapidSMS documentation
 .. toctree::
    :maxdepth: 1
    
-   tutorial
    ubuntu_install
+   deploy
+   tutorial
    i18n
    faqu
    aboutdocs
