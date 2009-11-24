@@ -39,3 +39,10 @@ RapidSMS server.
 
 .. _`Kannel gateway`: http://www.kannel.org/
 .. _`Kannel backend`: http://gist.github.com/214985
+
+Is it possible to install RapidSMS on Windows?
+==============================================
+
+Some people reported having successfully installed RapidSMS on Windows. However
+it is not as much tested as on Linux, therefore the advice is to preferably run it
+on a Linux system.
