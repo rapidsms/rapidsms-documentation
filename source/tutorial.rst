@@ -386,7 +386,7 @@ Starting the RapidSMS router
 
 This is how to start the RapidSMS router::
 
-    ~rapidsms$ python rapidsms router
+    ~rapidsms$ python rapidsms route
 
 You will see a couple of startup messages. If all goes well, you should see the following 
 at the end.::
