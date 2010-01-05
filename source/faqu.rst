@@ -40,6 +40,14 @@ RapidSMS server.
 .. _`Kannel gateway`: http://www.kannel.org/
 .. _`Kannel backend`: http://gist.github.com/214985
 
+Which modem is known to be compatible with RapidSMS?
+====================================================
+
+You can browse a list of modems known to work with RapidSMS on the `pygsm
+Wiki`_.
+
+.. _`pygsm Wiki`: http://wiki.github.com/adammck/pygsm
+
 Is it possible to install RapidSMS on Windows?
 ==============================================
 
