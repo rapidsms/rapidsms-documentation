@@ -11,7 +11,7 @@
 Configuring Eclipse on Windows XP for RapidSMS
 ===============================================
 
-Intro
+0 Intro
 -----
 
 These instructions explain how to install RapidSMS_ on Windows XP with Eclipse
@@ -58,7 +58,7 @@ The following packages are OPTIONAL but useful to have, though you can leave the
       
  * You should see a file called ".gitconfig" appear in your home directory with this setting inside of it.
 
-2 Installing RapidSMS
+3 Installing RapidSMS
 ----------------------------------
 
 Choosing the correct Fork
@@ -87,7 +87,7 @@ Make sure to replace <fork name> with your fork and <local folder name> with a n
     > git clone git://github.com/rapidsms/rapidsms.git rapidsms
 
 
-2 Working with the code in Eclipse
+4 Working with the code in Eclipse
 ----------------------------------
 
  * Go to the preferences/properties in Eclipse to set the pyDev python executable.  It should be pretty self explanatory/automagical to find the right python interpreter.
@@ -109,7 +109,7 @@ Make sure to replace <fork name> with your fork and <local folder name> with a n
  * In the database block of the ini file set the database preferences you want and the connection information.  
  * If using mysql or postgres, make a new database with the name you set in the local.ini.  Django can create tables, but is unable to make databases for mysql and postgres.
 
-3 Running the Code
+5 Running the Code
 ----------------------------------
  * Sync the db
 
@@ -134,7 +134,7 @@ Make sure to replace <fork name> with your fork and <local folder name> with a n
 
     > python manage.py route
 
-4 Getting PyDev to debug
+6 Getting PyDev to debug
 --------------------------------------------
 
  * You'll need to make a pydev run configuration
@@ -159,7 +159,7 @@ Make sure to replace <fork name> with your fork and <local folder name> with a n
 After that, breakpoints you define should work!
 
 
-6 Test your install
+7 Test your install
 -------------------
 
 Test RapidSMS
