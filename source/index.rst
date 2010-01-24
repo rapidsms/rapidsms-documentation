@@ -12,6 +12,7 @@ RapidSMS documentation
    :maxdepth: 1
    
    ubuntu_install
+   windows_install
    deploy
    tutorial
    i18n
