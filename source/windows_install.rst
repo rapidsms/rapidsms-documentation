@@ -12,7 +12,7 @@ Configuring Eclipse on Windows XP for RapidSMS
 ===============================================
 
 0 Intro
------
+-------
 
 These instructions explain how to install RapidSMS_ on Windows XP with Eclipse
 
@@ -173,4 +173,81 @@ Test RapidSMS
 Now open a browser and connect to http://localhost:8000
 
 You should see a RapidSMS dashboard.
+
+8 PyGSM
+-------------------
+
+* Install the python-serial library to communicate with PyGSM_
+* You can use the built-in hyperterminal for debugging (similar to Ubuntu's minicom/picocom)
+
+Cloning PyGSM code from GitHub_
+++++++++++++++++++++++++++++++++
+Once you have selected your fork, you can do the following to *clone* it (copy it) to your local machine::
+
+    > cd /usr/local
+    > sudo git clone git://github.com/rapidsms/pygsm.git pygsm
+    
+Compile and install PyGSM
+++++++++++++++++++++++++++++
+
+::
+
+    > cd /usr/local/pygsm
+    > sudo python setup.py install
+    
+Test PyGSM
+++++++++++
+
+PyGSM includes a small demo program that will connect to a modem and respond to incoming SMSs.
+
+The program is called `pygsm_demo` and it takes as arguments:
+
+* The port the modem is connected to. E.g. `COM12`
+* Modem configuration settings
+
+To find out what port the modem is connected to, go to Windows Device Manager (open by right-clicking on My Computer -> Properties -> Device Manager -> Ports and select the one that is attached to your modem/phone).
+
+The following will run the demo connecting to a MultiTech modem on `/dev/ttyUSB0`::
+
+    > pygsm_demo COM12 baudrate=115200 rtscts=1
+
+While running, the demo will show all the commands it is sending the modem. Output will look something like::
+
+    pyGSM Demo App
+      Port: /dev/ttyUSB0
+      Config: {'baudrate': '115200', 'rtscts': '1'}
+
+    Connecting to GSM Modem...
+       debug Booting
+       debug Connecting
+       write 'ATE0\r'
+        read '\r\n'
+        read 'OK\r\n'
+       write 'AT+CMEE=1\r'
+        read '\r\n'
+        read 'OK\r\n'
+       write 'AT+WIND=0\r'
+        read '\r\n'
+        read 'OK\r\n'
+       write 'AT+CSMS=1\r'
+        read '\r\n'
+        read '+CSMS: 1,1,1\r\n'
+        read '\r\n'
+        read 'OK\r\n'
+       write 'AT+CMGF=0\r'
+        read '\r\n'
+        read 'OK\r\n'
+       write 'AT+CNMI=2,2,0,0,0\r'
+        read '\r\n'
+        read 'OK\r\n'
+       write 'AT+CMGL=0\r'
+        read '\r\n'
+        read 'OK\r\n'
+    Waiting for incoming messages...
+       write 'AT\r'
+        read '\r\n'
+        read 'OK\r\n'
+       write 'AT+CMGL=0\r'
+        read '\r\n'
+        read 'OK\r\n'
 
