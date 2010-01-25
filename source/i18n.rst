@@ -178,15 +178,10 @@ Known Bugs
 
 * Web translations and sms translations (by runserver and router respectively) are currently routed through completely different mechanisms (rapidsms ugettext is different from django ugettext). One can imagine merging these two functions for clarity and repeatability of code - BUT FIRST let's wait until 1) we have a better idea of what 'contacts/reporters' (and hence user preferences) will look like, and 2) we have a clearer, codified mechanism for runserver and router to communicate, and for functions to know whether they are being called by runserver or by router.
 
-* HttpTester collapses when you try to push in Unicode
-
-* In unit tests, when RapidSMS delivers Unicode responses, some consoles will throw a UnicodeDecodeError (also seen as "unprintable AssertionError object", currently caught as "A problem interpreting non-ascii characters for your display"). For me, these unit tests fail on a windows console but pass in eclipse. Go figure.  
-
 * None of core has been tagged properly. i.e. We should:
   * Tag templates, e.g. {% trans "words" %}
   * Tag strings to translate, e.g. _("string to translate") 
   * Interpret messages sent within a default locale, e.g. message.send( _t(_default,message_to_send) )
-
 
 * webui and sms currently do not support different default languages. 
 
