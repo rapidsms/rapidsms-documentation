@@ -16,19 +16,32 @@ Configuring Eclipse on Windows XP for RapidSMS
 
 These instructions explain how to install RapidSMS_ on Windows XP with Eclipse
 
-1 Install required and useful packages
+1 Install Eclipse
 --------------------------------------
 The following packages are required to complete the install:
  * Java JDK
  * Eclipse (Java EE for Web Developers)
  * Install PyDev plugin for Eclipse: http://pydev.org/updates
+
+Change your tab-key to four spaces. This must be done in two places in your preferences:
+
+ 1. Under General->Editors->Text Editors: set displayed tab width to '4' and check the box that says 'Insert spaces for tabs'
+ 2. Under PyDev->Editor: set tab length to '4' and check the box that says 'Replace tabs with spaces when typing?'
+
+Change your newlines from windows style to Unix:
+ 3. Under General->Workspace set 'New text file line delimiter' to Unix.
+ 
+
+2 Install additional required and useful packages
+-------------------------------------------------
+
  * Install Python (>= 2.5, but < 3)
  * Install Python dependencies. So Far, this includes
 
    * pytz http://pytz.sourceforge.net/: Python TimeZone libraries
    * simplejson http://pypi.python.org/pypi/simplejson
 
- * Latest version of Django http://www.djangoproject.com/ currently we're using [http://www.djangoproject.com/download/1.0.2/tarball/1.0.2 final].   
+ * Django http://www.djangoproject.com/. 
 
 You will also need at least one of the following database systems:
 
@@ -48,7 +61,7 @@ The following packages are OPTIONAL but useful to have, though you can leave the
 * **sqlite3**: a command line program for accessing sqlite3 databases. If you use Sqlite3 as the datastore for RapidSMS, you will want this for debugging.
 * **sqlite3-doc**: documentation for sqlite3 tool.
 
-2 Install version control software
+3 Install version control software
 --------------------------------------
 * Git_: version control for RapidSMS
 
@@ -58,7 +71,7 @@ The following packages are OPTIONAL but useful to have, though you can leave the
       
  * You should see a file called ".gitconfig" appear in your home directory with this setting inside of it.
 
-3 Installing RapidSMS
+4 Installing RapidSMS
 ----------------------------------
 
 Choosing the correct Fork
@@ -87,7 +100,7 @@ Make sure to replace <fork name> with your fork and <local folder name> with a n
     > git clone git://github.com/rapidsms/rapidsms.git rapidsms
 
 
-4 Working with the code in Eclipse
+5 Working with the code in Eclipse
 ----------------------------------
 
  * Go to the preferences/properties in Eclipse to set the pyDev python executable.  It should be pretty self explanatory/automagical to find the right python interpreter.
@@ -109,7 +122,7 @@ Make sure to replace <fork name> with your fork and <local folder name> with a n
  * In the database block of the ini file set the database preferences you want and the connection information.  
  * If using mysql or postgres, make a new database with the name you set in the local.ini.  Django can create tables, but is unable to make databases for mysql and postgres.
 
-5 Running the Code
+6 Running the Code
 ----------------------------------
  * Sync the db
 
@@ -134,7 +147,7 @@ Make sure to replace <fork name> with your fork and <local folder name> with a n
 
     > python manage.py route
 
-6 Getting PyDev to debug
+7 Getting PyDev to debug
 --------------------------------------------
 
  * You'll need to make a pydev run configuration
@@ -159,7 +172,7 @@ Make sure to replace <fork name> with your fork and <local folder name> with a n
 After that, breakpoints you define should work!
 
 
-7 Test your install
+8 Test your install
 -------------------
 
 Test RapidSMS
@@ -174,7 +187,7 @@ Now open a browser and connect to http://localhost:8000
 
 You should see a RapidSMS dashboard.
 
-8 PyGSM
+9 PyGSM
 -------------------
 
 * Install the python-serial library to communicate with PyGSM_
