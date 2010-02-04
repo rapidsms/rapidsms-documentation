@@ -338,6 +338,9 @@ object:
         you will need only the identity and you can access it from the attribute
         ``message.connection.identity``.
 
+    - ``message.peer``
+        This is a convenience method that returns ``message.connection.identity``.
+
 You'll also notice the use of an object named ``Mileage``. This is the Django model 
 we defined earlier for storing data.
 
