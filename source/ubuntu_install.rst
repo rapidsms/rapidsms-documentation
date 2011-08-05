@@ -68,6 +68,7 @@ The following packages are required to complete the install:
 * **python-django**: the Django application server (the basis of RapidSMS_)
 * **python-serial**: Python serial libraries needed to run PyGSM_
 * **python-tz**: Python timezone libraries
+* **python-setuptools**: To download, build, install, upgrade, and uninstall Python packages -- easily!
 
 You will also need at least one of the following database systems:
 
@@ -97,7 +98,7 @@ The following packages are OPTIONAL but useful to have, though you can leave the
 
 This apt command will install *all* the packages listed above::
 
-    > sudo apt-get install git-core python-pysqlite2 mysql-server python-mysqldb python-django python-serial python-tz picocom sqlite3 sqlite3-doc emacs22-nox
+    > sudo apt-get install git-core python-pysqlite2 mysql-server python-mysqldb python-django python-serial python-tz picocom sqlite3 sqlite3-doc emacs22-nox python-setuptools
     
 
 4 Retrieve and Install PyGSM from GitHub_ 
